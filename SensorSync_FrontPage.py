@@ -74,12 +74,13 @@ footer {
 """
 
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-with st.sidebar:
-    st.markdown(
-        "<div style='display:flex;align-items:center;gap:10px'><div class='logo-circle'>WA</div><div><h3 style='margin:0'>WakeApp</h3><div style='font-size:12px;color:gray'>Opencv · YOLO · Torch</div></div></div>",
-        unsafe_allow_html=True)
-    st.markdown("-------")
-    st.caption("Built w/ OpenCv + YOLO + Torch. prototype")
+# with st.sidebar:
+    # st.markdown(
+    #     "<div style='display:flex;align-items:center;gap:10px'><div class='logo-circle'>WA</div><div><h3 style='margin:0'>WakeApp</h3><div style='font-size:12px;color:gray'>Opencv · YOLO · Torch</div></div></div>",
+    #     unsafe_allow_html=True)
+    # st.markdown("-------")
+    # st.caption("Built w/ OpenCv + YOLO + Torch. prototype")
+
 
 tabs = st.tabs(["Overview", "Exploratory Analysis", "Dashboard"])
 
@@ -106,10 +107,13 @@ with tabs[0]:
     with c1:
         st.markdown(
             "<div class='card'><h4 style='margin:0'>Why need this system?</h4>"
-            "<div style='color:gray;margin-top:6px'>Alot of car crash result from drivers sleeping while driving. "
-            "Drowsy driving is a significant factor in car crashes, with estimates suggesting it's involved in nearly 30,000 "
-            "deaths between 2017 and 2021 and can lead to significantly increased crash risk. For example, sleeping less than 5 "
-            "hours per night quadruples a driver's risk of crashing compared to those who sleep 8 or more hours</div></div>",
+            "<div style='color:gray;margin-top:6px'>Implementing an industrial sensor monitoring system transforms a company’s " \
+            "operations by shifting from costly, reactive 'run-to-failure' models to Predictive Maintenance (PdM), " \
+            "which utilizes real-time data like vibration and pressure to catch mechanical issues weeks before they escalate. " \
+            "This proactive approach eliminates expensive unplanned downtime by allowing repairs to be scheduled during off-peak hours, " \
+            "while simultaneously enhancing workplace safety through automated logic controls that shut down equipment in dangerous 'red-zone' conditions. " \
+            "Furthermore, by keeping machinery running within optimal parameters, companies significantly extend asset lifespans and delay massive capital expenditures, " \
+            "all while utilizing 'black box' Root Cause Analysis to prevent repeat failures and optimizing resource efficiency by targeting labor and energy usage only where it is truly needed.</div></div>",
             unsafe_allow_html=True
         )
 
