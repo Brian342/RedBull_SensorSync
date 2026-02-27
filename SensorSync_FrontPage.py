@@ -81,20 +81,18 @@ with st.sidebar:
     st.markdown("-------")
     st.caption("Built w/ OpenCv + YOLO + Torch. prototype")
 
-tabs = st.tabs(["Login/SignUp", "Overview", "visual", "settings"])
+tabs = st.tabs(["Overview", "Exploratory Analysis", "Dashboard"])
+
 
 with tabs[0]:
-    pass
-
-with tabs[1]:
     st.markdown(
         """
             <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:20px'>
             <div>
                 <h1 style='margin:0;background:linear-gradient(90deg,#06b6d4,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;'>
-                    WakeApp
+                    WareHouse Sensor Readings
                 </h1>
-                <div style='color:gray;font-size:15px;'>AI-powered and monitoring  — checks if you are awake when driving</div>
+                <div style='color:gray;font-size:15px;'>AI-powered and monitoring and Analysis — Derives Hided information from raw sensor Data obtained from sensors in a Company</div>
             </div>
             </div>
             """,
@@ -158,9 +156,9 @@ with tabs[1]:
         )
     st.markdown("<br>", unsafe_allow_html=True)
 
-with tabs[2]:
+with tabs[1]:
     st.header(
-        "Visual Page")
+        "Exploratory Analysis")
 
     col1, col2 = st.columns([2, 1.9])
     with col1:
@@ -228,4 +226,6 @@ with tabs[2]:
              """,
             unsafe_allow_html=True,
         )
-# this is a comment
+
+with tabs[2]:
+    st.header("Dashboard")
