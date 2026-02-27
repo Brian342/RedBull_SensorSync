@@ -93,7 +93,7 @@ with tabs[0]:
                 <h1 style='margin:0;background:linear-gradient(90deg,#06b6d4,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;'>
                     WareHouse Sensor Readings
                 </h1>
-                <div style='color:gray;font-size:15px;'>AI-powered and monitoring and Analysis — Derives Hided information from raw sensor Data obtained from sensors in a Company</div>
+                <div style='color:gray;font-size:15px;'>AI-powered, monitoring and Analysis — Derives Hided information from raw sensor Data obtained from sensors in a Company</div>
             </div>
             </div>
             """,
@@ -102,7 +102,7 @@ with tabs[0]:
 
     st.markdown("<div style='margin-bottom:10px'></div>", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns([3.4, 4.99, 5.69])
+    c1, c2, c3 = st.columns([6.75, 5.55, 6.69])
 
     with c1:
         st.markdown(
@@ -119,9 +119,9 @@ with tabs[0]:
 
         key_stats = [
             """
-            * Fatalities:- Between 2017 and 2021, drowsy driving was linked to approximately 30,000 deaths.
-            * Injuries and crashes:-In 2017, the NHTSA estimated 91,000 police-reported crashes involved drowsy drivers, resulting in 50,000 injuries and nearly 800 deaths. These figures are considered underestimates of the actual impact.,
-            * Risk increases with sleep deprivation:- Sleeping 6-7 hours a night doubles the risk of a crash compared to sleeping 8 or more hours. - Sleeping less than 5 hours per night increases crash risk by four to five times."
+            * Total Asset Loss: Historically, without sensor monitoring, 5% to 10% of heavy industrial machinery experiences a "fatal" catastrophic breakdown annually that requires total replacement..
+            * The Cost of a "Crash": Unplanned system crashes result in an average of 12–24 hours of downtime; for high-output companies, this translates to a loss of 20,000 - 200,000 dollars per hour depending on the industry.
+            * The "Age" Multiplier: Machine risk increases exponentially after 15 years of service; sensor data shows that machines in this age bracket are 3.5x more likely to experience voltage spikes that fry internal circuits.
             """
         ]
 
@@ -140,10 +140,10 @@ with tabs[0]:
 
         crash_type = [
             """
-            * Road departure: A significant portion of road departure crashes, where a vehicle leaves the roadway, are attributed to drowsy driving.
-            * Head-on collisions: It's estimated that up to 45% of head-on crashes result from a drowsy driver drifting across the center line.
-            * Time of day: The highest number of drowsy driving crashes occur during the early morning hours, specifically between 2:00 a.m. and 6:00 a.m.
-            * International data: In-depth studies in other countries show high percentages of fatigue-related crashes, such as 20% on motorways in one study and 16-19% of fatal accidents in Finland between 1995 and 1999
+            * Kinetic & Mechanical Crashes: These involve physical failures in moving parts like conveyors and AGVs, often caused by jams or snaps that immediately halt the physical movement of goods.
+            * Electrical & Control System Crashes: These are "invisible" failures, such as brownouts or communication blackouts, where power fluctuations or signal loss paralyze the facility's "brain" and logic.
+            * Hydraulic & Pneumatic Crashes: These occur in lifting and sorting equipment when pressure loss or seal blowouts cause sudden, gravity-driven failures of heavy loads.
+            * Rack & Structural Collapses: The most catastrophic warehouse event, these are domino-effect failures usually triggered by unreported structural "injuries" that lead to total racking failure.
             """
         ]
     with c3:
@@ -166,29 +166,6 @@ with tabs[1]:
 
     col1, col2 = st.columns([2, 1.9])
     with col1:
-        # API_KEY = "pass"
-        # gmaps = googlemaps.Client(API_KEY)
-        #
-        # start_loc = st.text_input("Enter start location", "Nairobi, Kenya")
-        # stop_loc = st.text_input("Enter stop location", "Kisumu, Kenya")
-        #
-        # if st.button("Show Route"):
-        #     start_geoloc = gmaps.geocode(start_loc)
-        #     end_geoloc = gmaps.geocode(stop_loc)
-        #
-        # if start_geoloc and end_geoloc:
-        #     start_cords = start_geoloc[0]['geometry']['location']
-        #     end_cords = end_geoloc[0]
-        start = [-1.0987, 37.0084]
-        end = [-1.286389, 36.817223]
-
-        m = folium.Map(location=start, zoom_start=12)
-        folium.Marker(start, tooltip="start").add_to(m)
-        folium.Marker(end, tooltip="Destination").add_to(m)
-        folium.PolyLine([start, end], color="blue", weight=4).add_to(m)
-
-        # Display map (outside the div but visually looks like it’s inside)
-        st_folium(m, width=700, height=500)
         st.markdown(
             """
             <div style="
@@ -204,7 +181,6 @@ with tabs[1]:
             unsafe_allow_html=True
         )
     with col2:
-        Detect_RealTime()
         st.markdown(
             f"""
              <div style="
