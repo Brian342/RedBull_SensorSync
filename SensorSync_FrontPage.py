@@ -77,7 +77,7 @@ st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 
 
-tabs = st.tabs(["Overview", "Exploratory Analysis", "Dashboard"])
+tabs = st.tabs(["Overview", "Upload Data", "Exploratory Analysis", "Dashboard"])
 
 
 with tabs[0]:
@@ -156,6 +156,9 @@ with tabs[0]:
     st.markdown("<br>", unsafe_allow_html=True)
 
 with tabs[1]:
+    pass
+
+with tabs[2]:
     st.header(
         "Problem Statement and Modeling Approach")
     st.set_page_config(page_title="Exploratory Analysis", layout="wide", initial_sidebar_state="expanded")
