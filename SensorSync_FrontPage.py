@@ -178,10 +178,20 @@ with tabs[1]:
     st.markdown("""The dataset contains 10,000 rows of sensor telemetry data collected from a fleet of machines over 
                 a 6-month period. Each row represents a snapshot of sensor readings at a specific timestamp, 
                 along with the corresponding machine ID and an errorID that indicates whether a failure occurred 
-                within the next 2 days. The dataset includes the following key features: """)
+                within the next 2 days. The dataset includes the following key features: 
+                ✅ `machineID`: A unique identifier for each machine in the fleet.
+                ✅ `timestamp`: The date and time when the sensor readings were recorded.
+                ✅ `sensor1` to `sensor10`: Ten different sensor readings that capture various aspects of machine health, such as vibration, temperature, pressure, and rotation.
+                ✅ 
+                ✅ `errorID`: A binary variable where 1 indicates that a failure occurred within the
+                next 2 days, and 0 indicates no failure. This is the target variable we will be predicting.
+                The dataset is structured to allow us to analyze the relationships between sensor readings and machine failures,
+                making it ideal for developing a predictive maintenance model. 
+                By exploring this data, we can identify critical sensor patterns and correlations that serve as 
+                early warning signs of impending failures, ultimately enabling us to prioritize""")
     
     st.divider()
-    st.header("## Exploratory Data Analysis")
+    st.header("Exploratory Data Analysis")
     st.markdown(""" 
                 Exploratory Data Analysis (EDA) is the most critical phase of this industrial project because it allows you to transform raw 
                 sensor telemetry into actionable business intelligence by uncovering the "hidden" relationships between machine health and operational variables. 
