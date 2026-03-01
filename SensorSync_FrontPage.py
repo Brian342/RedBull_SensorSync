@@ -162,15 +162,17 @@ with tabs[1]:
         upload_file = st.file_uploader("Upload Warehouse Dataset", type=['csv', 'xlsx'])
 
         if upload_file is not None:
+            st.success("File Uploaded successfully!")
+            
             with st.spinner("Extracting the Uploaded WareHouse Dataset!"):
                 if upload_file.name.endswith('.csv'):
                     data_csv = pd.read_csv(upload_file)
-                    data_csv.head()
+                    st.write(f"Data Preview: {data_csv.head()}")
                 else:
                     data_excel = pd.read_excel(upload_file)
-                    data_excel.head()
-                    
-            st.success("File Uploaded successfully!")
+                    st.write(f"Data Preview: {data_excel.head()}")
+
+            
 
 
         
