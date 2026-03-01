@@ -159,13 +159,19 @@ with tabs[1]:
     col1, col2 = st.columns([4, 2])
 
     with col1:
-        upload_file = st.file_uploader("Upload Warehouse Dataset", type=['csv', 'excel'])
+        upload_file = st.file_uploader("Upload Warehouse Dataset", type=['csv', 'xlsx'])
 
         if upload_file is not None:
+            with st.spinner("Extracting the Uploaded WareHouse Dataset!"):
+                if upload_file.name.endswith('.csv'):
+                    data_csv = pd.read_csv(upload_file)
+                    data_csv.head()
+                else:
+                    data_excel = pd.read_excel(upload_file)
+                    data_excel.head()
+                    
             st.success("File Uploaded successfully!")
 
-            with st.spinner("Extracting the Uploaded WareHouse Dataset!"):
-                data = ''
 
         
 
