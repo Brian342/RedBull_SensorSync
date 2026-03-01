@@ -270,7 +270,7 @@ with tabs[2]:
     with r2c2:
         st.subheader("Multi sensor Time Series")
         # Placeholder for the plot
-        
+
         # values = ['volt', 'rotate', 'pressure', 'vibration']
         # fig, axes = plt.subplots(2, 2,  figsize=(18,14))
         # fig.suptitle('Multi-sensor Time Series', fontsize=20)
@@ -285,5 +285,5 @@ with tabs[2]:
         
 
 
-with tabs[2]:
+with tabs[3]:
     st.header("Dashboard")
