@@ -230,53 +230,57 @@ with tabs[2]:
     with r1c1:
         st.subheader("Failure Component Count With Percentage")
         # Placeholder for the plot
-        plt.subplots(figsize=(18, 7))
-        ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
-        for container in ax.containers:
-            ax.bar_label(container, padding=3)
-        plt.ylabel('count')
-        plt.yscale('log')
-        plt.title('Failure Component Count With Percentage')
-        plt.show()
+
+        # plt.subplots(figsize=(18, 7))
+        # ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
+        # for container in ax.containers:
+        #     ax.bar_label(container, padding=3)
+        # plt.ylabel('count')
+        # plt.yscale('log')
+        # plt.title('Failure Component Count With Percentage')
+        # plt.show()
 
     with r1c2:
         st.subheader("Failure Probability by Age")
         # Placeholder for the plot
-        plt.subplots(figsize=(18, 7))
-        sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge')
-        plt.yscale('log')
-        plt.title('Failure Probability by Age')
-        plt.show()
+
+        # plt.subplots(figsize=(18, 7))
+        # sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge')
+        # plt.yscale('log')
+        # plt.title('Failure Probability by Age')
+        # plt.show()
         
 
     with r2c1:
         st.subheader("Health Profile Box Plot")
         # Placeholder for the plot
-        fig, axes = plt.subplots(2, 2, figsize=(18, 14))
-        fig.suptitle('Sensor Distribution by Machine Model', fontsize=20)
 
-        sensors = ['volt', 'rotate', 'pressure', 'vibration']
-        for i, sensor in enumerate(sensors):
-            ax = axes[i//2, i%2]
-            sns.boxplot(data=combine_copy, x='model', y=sensor, ax=ax, palette='viridis')
-            ax.set_title(f'{sensor.capitalize()} Distribution')
+        # fig, axes = plt.subplots(2, 2, figsize=(18, 14))
+        # fig.suptitle('Sensor Distribution by Machine Model', fontsize=20)
+
+        # sensors = ['volt', 'rotate', 'pressure', 'vibration']
+        # for i, sensor in enumerate(sensors):
+        #     ax = axes[i//2, i%2]
+        #     sns.boxplot(data=combine_copy, x='model', y=sensor, ax=ax, palette='viridis')
+        #     ax.set_title(f'{sensor.capitalize()} Distribution')
     
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
     
     with r2c2:
         st.subheader("Multi sensor Time Series")
         # Placeholder for the plot
-        values = ['volt', 'rotate', 'pressure', 'vibration']
-        fig, axes = plt.subplots(2, 2,  figsize=(18,14))
-        fig.suptitle('Multi-sensor Time Series', fontsize=20)
+        
+        # values = ['volt', 'rotate', 'pressure', 'vibration']
+        # fig, axes = plt.subplots(2, 2,  figsize=(18,14))
+        # fig.suptitle('Multi-sensor Time Series', fontsize=20)
 
-        for i, values in enumerate(values):
-            ax = axes[i//2, i%2]
-            sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
-            ax.set_title(f'{values.capitalize()} Trend By Hour')
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-        plt.show()
+        # for i, values in enumerate(values):
+        #     ax = axes[i//2, i%2]
+        #     sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
+        #     ax.set_title(f'{values.capitalize()} Trend By Hour')
+        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        # plt.show()
 
         
 
