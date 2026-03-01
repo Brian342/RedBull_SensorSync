@@ -74,12 +74,7 @@ footer {
 """
 
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-# with st.sidebar:
-    # st.markdown(
-    #     "<div style='display:flex;align-items:center;gap:10px'><div class='logo-circle'>WA</div><div><h3 style='margin:0'>WakeApp</h3><div style='font-size:12px;color:gray'>Opencv · YOLO · Torch</div></div></div>",
-    #     unsafe_allow_html=True)
-    # st.markdown("-------")
-    # st.caption("Built w/ OpenCv + YOLO + Torch. prototype")
+
 
 
 tabs = st.tabs(["Overview", "Exploratory Analysis", "Dashboard"])
@@ -179,7 +174,15 @@ with tabs[1]:
     """)
     
     st.divider()
-    st.markdown(r"""## Exploratory Data Analysis 🔎
+    st.header("Data Overview")
+    st.markdown("""The dataset contains 10,000 rows of sensor telemetry data collected from a fleet of machines over 
+                a 6-month period. Each row represents a snapshot of sensor readings at a specific timestamp, 
+                along with the corresponding machine ID and an errorID that indicates whether a failure occurred 
+                within the next 2 days. The dataset includes the following key features: """)
+    
+    st.divider()
+    st.header("## Exploratory Data Analysis")
+    st.markdown(""" 
                 Exploratory Data Analysis (EDA) is the most critical phase of this industrial project because it allows you to transform raw 
                 sensor telemetry into actionable business intelligence by uncovering the "hidden" relationships between machine health and operational variables. 
                 By performing EDA, you can identify critical sensor correlations—such as how a specific increase in vibration and pressure creates 
