@@ -164,6 +164,9 @@ with tabs[1]:
         if upload_file is not None:
             st.success("File Uploaded successfully!")
 
+            with st.spinner("Extracting the Uploaded WareHouse Dataset!"):
+                data = ''
+
         
 
 
