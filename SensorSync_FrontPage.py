@@ -221,7 +221,14 @@ with tabs[1]:
                 statistical foundation needed to move from a reactive maintenance mindset to a high-value, predictive maintenance strategy that 
                 saves the company thousands in unplanned downtime.
                 """)
-    
+    r1c1, r1c2 = st.columns([3, 2])
+    r2c1, r2c2 = st.columns([3, 2])
+
+    with r1c1:
+        st.subheade("Failure_Component_Count_With_Percentage")
+        
+        # Placeholder for correlation plot
+        
 
 
 with tabs[2]:
