@@ -156,7 +156,16 @@ with tabs[0]:
     st.markdown("<br>", unsafe_allow_html=True)
 
 with tabs[1]:
-    pass
+    col1, col2 = st.columns([4, 2])
+
+    with col1:
+        upload_file = st.file_uploader("Upload Warehouse Dataset", type=['csv', 'excel'])
+
+        if upload_file is not None:
+            st.success("File Uploaded successfully!")
+
+        
+
 
 with tabs[2]:
     st.header(
