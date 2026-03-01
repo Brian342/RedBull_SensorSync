@@ -239,7 +239,7 @@ with tabs[1]:
         # Placeholder for the plot
         st.markdown("Failure_Component_Count_With_Percentage.png")
     
-    with r1c1:
+    with r2c2:
         st.subheader("Multi sensor Time Series")
         # Placeholder for the plot
         st.markdown("Failure_Component_Count_With_Percentage.png")
