@@ -225,7 +225,7 @@ with tabs[1]:
     r2c1, r2c2 = st.columns([3, 2])
 
     with r1c1:
-        st.subheade("Failure_Component_Count_With_Percentage")
+        st.subheader("Failure_Component_Count_With_Percentage")
         
         # Placeholder for correlation plot
         
