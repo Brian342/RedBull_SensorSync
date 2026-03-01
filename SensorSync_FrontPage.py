@@ -225,9 +225,25 @@ with tabs[1]:
     r2c1, r2c2 = st.columns([3, 2])
 
     with r1c1:
-        st.subheader("Failure_Component_Count_With_Percentage")
-        
-        # Placeholder for correlation plot
+        st.subheader("Failure Component Count With Percentage")
+        # Placeholder for the plot
+        st.markdown("Failure_Component_Count_With_Percentage.png")
+
+    with r1c2:
+        st.subheader("Failure Probability by Age")
+        # Placeholder for the plot
+        st.markdown("Failure_Component_Count_With_Percentage.png")
+
+    with r2c1:
+        st.subheader("Health Profile Box Plot")
+        # Placeholder for the plot
+        st.markdown("Failure_Component_Count_With_Percentage.png")
+    
+    with r1c1:
+        st.subheader("Multi sensor Time Series")
+        # Placeholder for the plot
+        st.markdown("Failure_Component_Count_With_Percentage.png")
+
         
 
 
