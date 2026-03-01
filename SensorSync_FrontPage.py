@@ -162,50 +162,33 @@ with tabs[0]:
 
 with tabs[1]:
     st.header(
-        "Exploratory Analysis")
+        "Problem Statement and Modeling Approach")
+    st.set_page_config(page_title="Exploratory Analysis", layout="wide", initial_sidebar_state="expanded")
+    st.markdown("""    
+    ## Problem Statement
+    Imagine this real-world scenario: A maintenance or field services team manages a fleet of thousands of machines, each with multiple components that may fail over time. Every morning, the team must decide which machines and components to prioritize for maintenance. Inspecting every machine daily is impossible, and the team desperately needs a data driven way to allocate resources effectively. This challenge is common and represents a perfect opportunity to implement **predictive maintenance** solutions.
+    While it can be tempting for data teams to jump straight into **deep learning models**, I’ve been exploring a different approach: the **Cox Proportional Hazards (Cox PH) model with time-varying covariates** using the `lifelines` Python library. This method is highly interpretable, computationally efficient, and familiar to many reliability and quality engineers. It also integrates well with telemetry **IoT signals**, making it ideal for predictive maintenance.
+    In this app, we’ll use the **Azure Predictive Maintenance dataset** to demonstrate how a Cox PH model can be developed and deployed to support smarter maintenance decisions. Specifically, I’ll show how to extend the model with time-varying covariates to estimate the **probability of a component failing within the next 2 days**, a practical use case that empowers teams to prioritize work based on dynamic risk estimates informed by real-time telemetry.
+    Before diving in, here’s why this modeling approach stands out:
 
-    col1, col2 = st.columns([2, 1.9])
-    with col1:
-        st.markdown(
-            """
-            <div style="
-                background-color: #ffffff;
-                padding: 1.2rem;
-                border-radius: 15px;
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    ✅ Combines static attributes (e.g., manufacturer, install date) with real-time telemetry data  
+    ✅ Easily integrates into production pipelines using Python and open-source tools like `lifelines`  
+    ✅ Produces actionable failure probabilities with minimal post-processing  
+    ✅ Handles censored data and class imbalance—both common in maintenance scenarios  
+    ✅ Bridges the gap between data science teams and reliability engineers familiar with these models in tools like JMP or Minitab, now with scalable and automatable Python workflows  
+    """)
+    
+    st.divider()
+    st.markdown(r"""## Exploratory Data Analysis 🔎
+                Exploratory Data Analysis (EDA) is the most critical phase of this industrial project because it allows you to transform raw 
+                sensor telemetry into actionable business intelligence by uncovering the "hidden" relationships between machine health and operational variables. 
+                By performing EDA, you can identify critical sensor correlations—such as how a specific increase in vibration and pressure creates 
+                a "danger zone" for failure—and detect anomalies or outliers that represent early warning signs of the warehouse crashes described earlier. 
+                Furthermore, EDA helps you understand the seasonal and hourly patterns of errorID occurrences, ensuring that your predictive models 
+                aren't biased by "noisy" data or mislabeled NaN values. Ultimately, this process validates your data's integrity and provides the 
+                statistical foundation needed to move from a reactive maintenance mindset to a high-value, predictive maintenance strategy that 
+                saves the company thousands in unplanned downtime.""")
 
-            <h3 style="margin-top:0;color:white;">Route Map</h3>
-            <p style="color:gray">Your map and directions will appear here.</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    with col2:
-        st.markdown(
-            f"""
-             <div style="
-             background-color: #ffffff;
-             padding: 2.5rem;
-             border-radius: 15px;
-             text-align: center;
-             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-             ">
-             <h3 style="color:black">Status</h3>
-             <div id="state-box" style="
-             font-size: 2rem;
-             font-weight: bold;
-             margin-top: 20px;
-             padding: 20px;
-             border-radius: 12px;
-             background-color: #e8f0fe;
-             color: #1a73e8;
-             ">
-             Awake/Asleep
-             </div>
-             </div>
-             """,
-            unsafe_allow_html=True,
-        )
 
 with tabs[2]:
     st.header("Dashboard")
