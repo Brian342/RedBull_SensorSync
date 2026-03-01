@@ -175,44 +175,39 @@ with tabs[1]:
     
     st.divider()
     st.header("Data Overview")
-    st.markdown("""The dataset contains 10,000 rows of sensor telemetry data collected from a fleet of machines over 
-                a 6-month period. Each row represents a snapshot of sensor readings at a specific timestamp, 
+    st.markdown("""
+                The dataset contains 884,166 rows of sensor telemetry data collected from a fleet of machines over 
+                a 12-month period. Each row represents a snapshot of sensor readings at a specific timestamp, 
                 along with the corresponding machine ID and an errorID that indicates whether a failure occurred 
                 within the next 2 days. The dataset includes the following key features: 
 
-                1. The Identity & Lifecycle Columns
-                ✅ `model`: The specific category or series of the machine. Different models have different "nominal" operating ranges; for example, a high-speed sorter will naturally have a higher rotate value than a heavy-duty lift.
+                1. The Identity & Lifecycle Columns:
+
+                ✅ `model`: The specific category or series of the machine. Different models in the dataset have different "nominal" operating ranges; 
+                    for example, a high-speed sorter will naturally have a higher rotate value than a heavy-duty lift.\n
                 ✅ `age`: The number of years the machine has been in service. In reliability engineering, this is used to calculate the "Bathtub Curve"—where machines are most likely to fail when they are brand new (infant mortality) or very old (wear-out phase).
 
                 2. The Telemetry (Sensor) Columns
                 These are your continuous variables that describe the "vitals" of the equipment:
-                ✅ `volt (Voltage)`: Measures electrical input. Sudden spikes can indicate power surges, while "dips" might suggest a motor is struggling to draw power.
-                ✅ `rotate (Rotation/RPM)`: The speed at which the internal motor or components are spinning.
-                ✅ `pressure`: Usually relates to hydraulic or pneumatic systems. A sudden drop often points to a seal leak, while a steady increase suggests a blockage.
-                ✅ `vibration`: The most critical indicator for mechanical health. High vibration is almost always a sign of misalignment, loose bolts, or worn-out bearings.
 
-                3. The Event & Failure Columns
-                ✅ `errorID`: These are non-breaking alerts. Think of them as "yellow lights" on a dashboard. They indicate the machine is still running, but something is suboptimal.
-                ✅ `failure`: This is your "target variable." It marks the moment the machine actually stopped working. Usually, this is categorized by which component failed (e.g., comp1, comp2).
-                ✅ `comp`: Indicates which specific part was replaced or serviced during a maintenance event.
+                ✅ `volt (Voltage)`: Measures electrical input. Sudden spikes can indicate power surges, while "dips" might suggest a motor is struggling to draw power.\n
+                ✅ `rotate (Rotation/RPM)`: The speed at which the internal motor or components are spinning.\n
+                ✅ `pressure`: Usually relates to hydraulic or pneumatic systems. A sudden drop often points to a seal leak, while a steady increase suggests a blockage.\n
+                ✅ `vibration`: The most critical indicator for mechanical health. High vibration is almost always a sign of misalignment, loose bolts, or worn-out bearings.\n
 
-                4. The Time Intelligence Columns
-                ✅ `datetime`: The precise timestamp of the reading.
+                3. The Event & Failure Columns:
+
+                ✅ `errorID`: These are non-breaking alerts. Think of them as "yellow lights" on a dashboard. They indicate the machine is still running, but something is suboptimal.\n
+                ✅ `failure`: This is your "target variable." It marks the moment the machine actually stopped working. Usually, this is categorized by which component failed (e.g., comp1, comp2).\n
+                ✅ `comp`: Indicates which specific part was replaced or serviced during a maintenance event.\n
+
+                4. The Time Intelligence Columns:
+
+                ✅ `datetime`: The precise timestamp of the reading.\n
                 ✅ `year, month, date, hour`: These are "features" engineered from the datetime.
-                hour is vital for finding shift-change patterns.
-                month helps identify seasonality (e.g., do machines overheat more in the summer?).
-
-
-                ✅ `machineID`: A unique identifier for each machine in the fleet.
-                ✅ `timestamp`: The date and time when the sensor readings were recorded.
-                ✅ `sensor1` to `sensor10`: Ten different sensor readings that capture various aspects of machine health, such as vibration, temperature, pressure, and rotation.
-                ✅ ``
-                ✅ `errorID`: A binary variable where 1 indicates that a failure occurred within the
-                next 2 days, and 0 indicates no failure. This is the target variable we will be predicting.
-                The dataset is structured to allow us to analyze the relationships between sensor readings and machine failures,
-                making it ideal for developing a predictive maintenance model. 
-                By exploring this data, we can identify critical sensor patterns and correlations that serve as 
-                early warning signs of impending failures, ultimately enabling us to prioritize""")
+                    `hour` is vital for finding shift-change patterns.
+                    month helps identify seasonality (e.g., do machines overheat more in the summer?).
+                """)
     
     st.divider()
     st.header("Exploratory Data Analysis")
@@ -224,7 +219,9 @@ with tabs[1]:
                 Furthermore, EDA helps you understand the seasonal and hourly patterns of errorID occurrences, ensuring that your predictive models 
                 aren't biased by "noisy" data or mislabeled NaN values. Ultimately, this process validates your data's integrity and provides the 
                 statistical foundation needed to move from a reactive maintenance mindset to a high-value, predictive maintenance strategy that 
-                saves the company thousands in unplanned downtime.""")
+                saves the company thousands in unplanned downtime.
+                """)
+    
 
 
 with tabs[2]:
