@@ -51,3 +51,10 @@ month = {1:'Jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun',
         7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
 
 combine_copy['month'] = combine_copy['month'].map(month)
+
+# change the age column to int type
+combine_copy['age'] = combine_copy['age'].astype(int)
+
+
+def round_value(df: pd.DataFrame, col: float) -> float:
+    df[col] = round(df[col], 2)
