@@ -1,4 +1,5 @@
 import pandas as pd
+from Sensor_Data import cleaning
 import numpy as np
 import streamlit as st
 import seaborn as sns
@@ -173,8 +174,16 @@ with tabs[1]:
                     data_excel = pd.read_excel(upload_file)
                     st.write(f"Data Preview: {data_excel.head()}")
 
-            
-
+        if data_csv is not None:
+            cleaning(data_csv)
+            combine_copy = data_csv.copy()
+            combine_copy['age'].fillna(combine_copy['age'].median(), inplace=True)
+        elif data_excel is not None:
+            cleaning(data_excel)
+            combine_copy = data_excel.copy()
+            combine_copy['age'].fillna(combine_copy['age'].median(), inplace=True)
+        else:
+            st.warning("No file uploaded. Please upload a CSV or Excel file to proceed.")
 
         
 
