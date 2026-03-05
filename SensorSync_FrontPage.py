@@ -256,7 +256,7 @@ with tabs[2]:
         total_rows = len(combine_copy)
         failure_summary['Percentage (%)'] = (failure_summary['Frequency'] / total_rows) * 100
         failure_summary['Percentage (%)'] = failure_summary['Percentage (%)'].round(2)
-        
+
         plt.subplots(figsize=(18, 7))
         ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
         for container in ax.containers:
@@ -270,11 +270,11 @@ with tabs[2]:
         st.subheader("Failure Probability by Age")
         # Placeholder for the plot
 
-        # plt.subplots(figsize=(18, 7))
-        # sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge')
-        # plt.yscale('log')
-        # plt.title('Failure Probability by Age')
-        # plt.show()
+        plt.subplots(figsize=(18, 7))
+        sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge')
+        plt.yscale('log')
+        plt.title('Failure Probability by Age')
+        plt.show()
         
 
     with r2c1:
