@@ -38,3 +38,16 @@ elif data_excel is not None:
     combine_copy['age'].fillna(combine_copy['age'].median(),inplace=True)
 
 # manipulate the date time column
+combine_copy['datetime']= pd.to_datetime(combine_copy['datetime'])
+
+# separating the the datetime column into year, month, date and hour
+combine_copy['year'] = combine_copy['datetime'].dt.year
+combine_copy['month'] = combine_copy['datetime'].dt.month
+combine_copy['date'] = combine_copy['datetime'].dt.day
+combine_copy['hour'] = combine_copy['datetime'].dt.hour
+
+# using dictionary
+month = {1:'Jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun',
+        7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
+
+combine_copy['month'] = combine_copy['month'].map(month)
