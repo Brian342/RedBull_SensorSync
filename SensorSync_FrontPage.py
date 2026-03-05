@@ -297,16 +297,16 @@ with tabs[2]:
         st.subheader("Multi sensor Time Series")
         # Placeholder for the plot
 
-        # values = ['volt', 'rotate', 'pressure', 'vibration']
-        # fig, axes = plt.subplots(2, 2,  figsize=(18,14))
-        # fig.suptitle('Multi-sensor Time Series', fontsize=20)
+        values = ['volt', 'rotate', 'pressure', 'vibration']
+        fig, axes = plt.subplots(2, 2,  figsize=(18,14))
+        fig.suptitle('Multi-sensor Time Series', fontsize=20)
 
-        # for i, values in enumerate(values):
-        #     ax = axes[i//2, i%2]
-        #     sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
-        #     ax.set_title(f'{values.capitalize()} Trend By Hour')
-        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-        # plt.show()
+        for i, values in enumerate(values):
+            ax = axes[i//2, i%2]
+            sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
+            ax.set_title(f'{values.capitalize()} Trend By Hour')
+        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        plt.show()
 
         
 
