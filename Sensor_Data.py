@@ -58,3 +58,7 @@ combine_copy['age'] = combine_copy['age'].astype(int)
 
 def round_value(df: pd.DataFrame, col: float) -> float:
     df[col] = round(df[col], 2)
+
+values = ['volt','rotate', 'pressure', 'vibration']
+for i in values:
+    round_value(combine_copy, i)
