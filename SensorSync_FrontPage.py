@@ -250,16 +250,21 @@ with tabs[2]:
 
     with r1c1:
         st.subheader("Failure Component Count With Percentage")
-        # Placeholder for the plot
-
-        # plt.subplots(figsize=(18, 7))
-        # ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
-        # for container in ax.containers:
-        #     ax.bar_label(container, padding=3)
-        # plt.ylabel('count')
-        # plt.yscale('log')
-        # plt.title('Failure Component Count With Percentage')
-        # plt.show()
+        # failure count of the components
+        failure_summary = combine_copy['failure'].value_counts().reset_index()
+        failure_summary.columns = ['Failure Type', 'Frequency']
+        total_rows = len(combine_copy)
+        failure_summary['Percentage (%)'] = (failure_summary['Frequency'] / total_rows) * 100
+        failure_summary['Percentage (%)'] = failure_summary['Percentage (%)'].round(2)
+        
+        plt.subplots(figsize=(18, 7))
+        ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
+        for container in ax.containers:
+            ax.bar_label(container, padding=3)
+        plt.ylabel('count')
+        plt.yscale('log')
+        plt.title('Failure Component Count With Percentage')
+        plt.show()
 
     with r1c2:
         st.subheader("Failure Probability by Age")
