@@ -281,16 +281,16 @@ with tabs[2]:
         st.subheader("Health Profile Box Plot")
         # Placeholder for the plot
 
-        # fig, axes = plt.subplots(2, 2, figsize=(18, 14))
-        # fig.suptitle('Sensor Distribution by Machine Model', fontsize=20)
+        fig, axes = plt.subplots(2, 2, figsize=(18, 14))
+        fig.suptitle('Sensor Distribution by Machine Model', fontsize=20)
 
-        # sensors = ['volt', 'rotate', 'pressure', 'vibration']
-        # for i, sensor in enumerate(sensors):
-        #     ax = axes[i//2, i%2]
-        #     sns.boxplot(data=combine_copy, x='model', y=sensor, ax=ax, palette='viridis')
-        #     ax.set_title(f'{sensor.capitalize()} Distribution')
+        sensors = ['volt', 'rotate', 'pressure', 'vibration']
+        for i, sensor in enumerate(sensors):
+            ax = axes[i//2, i%2]
+            sns.boxplot(data=combine_copy, x='model', y=sensor, ax=ax, palette='viridis')
+            ax.set_title(f'{sensor.capitalize()} Distribution')
     
-        # plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
     
     with r2c2:
