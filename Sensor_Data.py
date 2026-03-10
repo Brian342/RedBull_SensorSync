@@ -75,3 +75,4 @@ def round_value(df: pd.DataFrame, col: float) -> float:
 values = ['volt','rotate', 'pressure', 'vibration']
 for i in values:
     round_value(combine_copy, i)
+    # new code 
