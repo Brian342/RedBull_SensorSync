@@ -1,5 +1,5 @@
 import pandas as pd
-from Sensor_Data import cleaning
+from Sensor_Data import cleaning, manipulate_date, round_value
 import numpy as np
 import streamlit as st
 import seaborn as sns

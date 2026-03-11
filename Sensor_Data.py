@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from SensorSync_FrontPage import *
 
 # function for checking the null values
 def cleaning(df: pd.DataFrame, col:str) -> str:
