@@ -70,7 +70,10 @@ def manipulate_date(df: pd.DataFrame):
 def round_value(df: pd.DataFrame, col: float) -> float:
     df[col] = round(df[col], 2)
 
-values = ['volt','rotate', 'pressure', 'vibration']
-for i in values:
-    round_value(df, i)
+    return df
+
+
+# values = ['volt','rotate', 'pressure', 'vibration']
+# for i in values:
+#     round_value(df=combine_copy, col=i)
      
