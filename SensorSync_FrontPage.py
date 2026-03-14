@@ -1,4 +1,7 @@
+from calendar import month
+
 import pandas as pd
+from pyparsing import col
 from Sensor_Data import cleaning, manipulate_date, round_value
 import numpy as np
 import streamlit as st
@@ -8,8 +11,45 @@ from SensorSync_FrontPage import *
 
 
 # modification of streamlit page
-st.set_page_config(page_title="WareHouse Readings", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(
+    page_title="WareHouse Readings", 
+    layout="wide", 
+    initial_sidebar_state="expanded"
+    )
 
+# cleaning the data and Feature Engineering
+def clean_and_preprocessing(df):
+    """This function takes a DataFrame as input and performs data cleaning and preprocessing steps, 
+    including handling null values, manipulating date columns, and rounding sensor readings.
+    **Parameters:df
+    **Returns:None
+    """
+    df_clean = df.copy()
+
+    # Handling missing values for 'age' column
+    if 'age' in df_clean.columns:
+        df_clean['age'] = df_clean['age'].fillna(df_clean['age'].median())
+        df_clean['age'] = df_clean['age'].astype(int)
+
+    # DateTime Manipulation
+    if 'datetime' in df_clean.columns:
+        df_clean['datetime'] = pd.to_datetime(df_clean['datetime'])
+        df_clean['year'] = df_clean['datetime'].dt.year
+        df_clean['month_num'] = df_clean['datetime'].dt.month
+        df_clean['date'] = df_clean['datetime'].dt.day
+        df_clean['hour'] = df_clean['datetime'].dt.hour
+
+        mounth_map = {1:'Jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun',
+                            7:'July', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'}
+        df_clean['month'] = df_clean['month_num'].map(mounth_map)
+
+    # Rounding sensor readings to 2 decimal places
+    sensor_cols = ['volt', 'rotate', 'pressure', 'vibration']
+    for col in sensor_cols:
+        if col in df_clean.columns:
+            df_clean[col] = round(df_clean[col], 2)
+
+    return df_clean
 CUSTOM_CSS = r"""
     <style>
 :root[data-theme="light"] {
@@ -77,7 +117,9 @@ footer {
 
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
-
+# Initialize session State for data persistence across tabs
+if 'data' not in st.session_state:
+    st.session_state['data'] = None
 
 tabs = st.tabs(["Overview", "Upload Data", "Exploratory Analysis", "Dashboard"])
 
@@ -168,22 +210,17 @@ with tabs[1]:
             
             with st.spinner("Extracting the Uploaded WareHouse Dataset!"):
                 if upload_file.name.endswith('.csv'):
-                    data_csv = pd.read_csv(upload_file)
-                    st.write(f"Data Preview: {data_csv.head()}")
+                    data_raw = pd.read_csv(upload_file)
+                    st.write(f"Data Preview: {data_raw.head()}")
                 else:
-                    data_excel = pd.read_excel(upload_file)
-                    st.write(f"Data Preview: {data_excel.head()}")
+                    data_raw = pd.read_excel(upload_file)
+                    st.write(f"Data Preview: {data_raw.head()}")
 
-                if data_csv is not None:
-                    cleaning(data_csv)
-                    combine_copy = data_csv.copy()
-                    combine_copy['age'].fillna(combine_copy['age'].median(), inplace=True)
-                elif data_excel is not None:
-                    cleaning(data_excel)
-                    combine_copy = data_excel.copy()
-                    combine_copy['age'].fillna(combine_copy['age'].median(), inplace=True)
-                else:
-                    st.warning("No file uploaded. Please upload a CSV or Excel file to proceed.")
+                st.session_state.data = clean_and_preprocessing(data_raw) 
+                st.success("Data cleaned and preprocessed successfully!")
+                st.dataframe(st.session_state.data.head())           
+        else:
+            st.warning("No file uploaded. Please upload a CSV or Excel file to proceed.")
 
         
 
@@ -191,7 +228,11 @@ with tabs[1]:
 with tabs[2]:
     st.header(
         "Problem Statement and Modeling Approach")
-    st.set_page_config(page_title="Exploratory Analysis", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(
+        page_title="Exploratory Analysis", 
+        layout="wide", 
+        initial_sidebar_state="expanded")
+    
     st.markdown("""    
     ## Problem Statement
     Imagine this real-world scenario: A maintenance or field services team manages a fleet of thousands of machines, each with multiple components that may fail over time. Every morning, the team must decide which machines and components to prioritize for maintenance. Inspecting every machine daily is impossible, and the team desperately needs a data driven way to allocate resources effectively. This challenge is common and represents a perfect opportunity to implement **predictive maintenance** solutions.
@@ -254,6 +295,7 @@ with tabs[2]:
                 statistical foundation needed to move from a reactive maintenance mindset to a high-value, predictive maintenance strategy that 
                 saves the company thousands in unplanned downtime.
                 """)
+    
     r1c1, r1c2 = st.columns([3, 2])
     r2c1, r2c2 = st.columns([3, 2])
 
