@@ -295,70 +295,68 @@ with tabs[2]:
                 statistical foundation needed to move from a reactive maintenance mindset to a high-value, predictive maintenance strategy that 
                 saves the company thousands in unplanned downtime.
                 """)
-    
-    r1c1, r1c2 = st.columns([3, 2])
-    r2c1, r2c2 = st.columns([3, 2])
+    if st.session_state.data is None:
+        st.warning("Please upload a dataset in the 'Upload Data' section to perform Exploratory Data Analysis.")
+    else:
+        df = st.session_state.data
+        st.header("Exploratory Data Analysis (EDA) Visualizations")
 
-    with r1c1:
-        st.subheader("Failure Component Count With Percentage")
-        # failure count of the components
-        failure_summary = combine_copy['failure'].value_counts().reset_index()
-        failure_summary.columns = ['Failure Type', 'Frequency']
-        total_rows = len(combine_copy)
-        failure_summary['Percentage (%)'] = (failure_summary['Frequency'] / total_rows) * 100
-        failure_summary['Percentage (%)'] = failure_summary['Percentage (%)'].round(2)
+        r1c1, r1c2 = st.columns([3, 2])
 
-        plt.subplots(figsize=(18, 7))
-        ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
-        for container in ax.containers:
-            ax.bar_label(container, padding=3)
-        plt.ylabel('count')
-        plt.yscale('log')
-        plt.title('Failure Component Count With Percentage')
-        plt.show()
+        with r1c1:
+            st.subheader("Failure Component Count With Percentage")
+            # failure count of the components
+            if 'failure' in df.columns:
+                combine_copy = df.copy()
+                failure_summary = combine_copy['failure'].value_counts().reset_index()
+                failure_summary.columns = ['Failure Type', 'Frequency']
+                total_rows = len(combine_copy)
+                failure_summary['Percentage (%)'] = (failure_summary['Frequency'] / total_rows) * 100
+                failure_summary['Percentage (%)'] = failure_summary['Percentage (%)'].round(2)
 
-    with r1c2:
-        st.subheader("Failure Probability by Age")
-        # Placeholder for the plot
+                fig, ax = plt.subplots(figsize=(18, 7))
+                ax = sns.barplot(data=failure_summary, x='Failure Type', y='Percentage (%)', hue='Failure Type')
+                for container in ax.containers:
+                    ax.bar_label(container, padding=3)
+                ax.set_ylabel('Percentage %')
+                st.pyplot()
 
-        plt.subplots(figsize=(18, 7))
-        sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge')
-        plt.yscale('log')
-        plt.title('Failure Probability by Age')
-        plt.show()
+        with r1c2:
+            st.subheader("Failure Probability by Age")
+            # Placeholder for the plot
+
+            if 'age' in df.columns:
+                fig, ax = plt.subplots(figsize=(18, 7))
+                sns.histplot(data=combine_copy, x='age', hue='failure', bins=3, multiple='dodge', ax=ax)
+                ax.set_yscale('log')
+                ax.set_title('Failure Probability by Age')
+                st.pyplot(fig)
         
+        st.divider()
+        
+        r2c1, r2c2 = st.columns([3, 2])
 
-    with r2c1:
-        st.subheader("Health Profile Box Plot")
+        with r2c1:
+            st.subheader("Health Profile Box Plot")
+        # Placeholder for the plot
+            sensor_to_plot = st.selectbox("Select Sensor for Box Plot", options=['volt', 'rotate', 'pressure', 'vibration'])
+            fig, ax = plt.subplots(figsize=(18, 7))
+            sns.boxplot(data=df, x='model' if 'model' in df.columns else None, y=sensor_to_plot, ax=ax, palette='viridis')
+            st.pyplot(fig)
+    
+        with r2c2:
+            st.subheader("Multi sensor Time Series")
         # Placeholder for the plot
 
-        fig, axes = plt.subplots(2, 2, figsize=(18, 14))
-        fig.suptitle('Sensor Distribution by Machine Model', fontsize=20)
+            values = ['volt', 'rotate', 'pressure', 'vibration']
+            fig, axes = plt.subplots(2, 2,  figsize=(18,14))
+            fig.suptitle('Multi-sensor Time Series', fontsize=20)
 
-        sensors = ['volt', 'rotate', 'pressure', 'vibration']
-        for i, sensor in enumerate(sensors):
-            ax = axes[i//2, i%2]
-            sns.boxplot(data=combine_copy, x='model', y=sensor, ax=ax, palette='viridis')
-            ax.set_title(f'{sensor.capitalize()} Distribution')
-    
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-
-    
-    with r2c2:
-        st.subheader("Multi sensor Time Series")
-        # Placeholder for the plot
-
-        values = ['volt', 'rotate', 'pressure', 'vibration']
-        fig, axes = plt.subplots(2, 2,  figsize=(18,14))
-        fig.suptitle('Multi-sensor Time Series', fontsize=20)
-
-        for i, values in enumerate(values):
-            ax = axes[i//2, i%2]
-            sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
-            ax.set_title(f'{values.capitalize()} Trend By Hour')
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-        plt.show()
-
+            for i, values in enumerate(values):
+                ax = axes[i//2, i%2]
+                sns.lineplot(data=combine_copy, x='hour', y=values, ax=ax, hue=None, palette='viridis', errorbar=None)
+                ax.set_title(f'{values.capitalize()} Trend By Hour')
+                st.pyplot(fig)
         
 
 
